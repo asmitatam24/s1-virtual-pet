@@ -3,5 +3,6 @@ public class Runner{
         VirtualPet p = new VirtualPet();
 
         p.feed();
+        p.exercise();
     }
 }
