@@ -3,9 +3,10 @@ import javax.swing.*;
 public class Runner{
     public Runner(){
         VirtualPet p = new VirtualPet();
-        p.exercise();
-        stop(4000);
-        p.feed();
+        p.wakeUp();
+        stop(3000);
+        p.death();
+        stop(2000);
         String ans = response("How was your day");
         System.out.println(ans);
     }
