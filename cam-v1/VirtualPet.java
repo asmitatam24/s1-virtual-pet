@@ -3,6 +3,10 @@
  * @author Cam
  * @author ?
  */
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class VirtualPet {
     
     VirtualPetFace face;
@@ -17,6 +21,23 @@ public class VirtualPet {
         face.setMessage("Hello.");
     }
     
+    public String response(String q){
+        String s = (String)JOptionPane.showInputDialog(
+            new JFrame(),
+            q,
+            "Get a response",
+            JOptionPane.PLAIN_MESSAGE
+        );
+        return s;
+    }
+
+    public void stop(int milliseconds){
+        try{
+            Thread.sleep(milliseconds);
+        } catch(Exception e){
+
+        }
+    }
     public void feed() {
         if (hunger > 10) {
             hunger = hunger - 10;
@@ -58,5 +79,53 @@ public class VirtualPet {
             face.setImage("surpirsed");
             mood = mood - 1;
         }
+    }
+
+    public void breakFast(){
+        String ans1 = response("What should I eat? Bacon and Eggs? or Bread?");
+        if (ans1.equals("Bacon and Eggs")){
+            face.setImage("bacon");
+            mood = mood + 1;
+        } else{
+            face.setImage("bread");
+            mood = mood - 1;
+        }
+    }
+
+    public void toSchool(){
+        int bus = (int)(Math.random()*3);
+        String ans2 = response("Should I walk or take bus");
+        if (ans2.equals("walk")){
+            face.setImage("normal");
+            face.setMessage("I love walking!");
+        }
+        if (ans2.equals("bus")){
+            if (bus != 0){
+                face.setImage("bus");;
+                face.setMessage("I love taking the bus!");
+            }
+
+            else{
+                face.setMessage("Noooooo! I missed the bus :(");
+                face.setImage("very sad");
+                mood = mood - 1;
+            }
+        }
+
+    public void popquiz(){
+        face.setImage("popquiz");
+        face.setMessage("another physics pop quiz???");
+        int quiz = (int)(Math.random()*1);
+        if (quiz != 0){
+            face.setImage("ecstatic"); //popquiz pixel art
+            face.setMessage("I passed!");
+        }
+
+        else{
+            face.setImage("fail") //fail pixel art
+            // if missed bus, decrease mood
+        }
+    }
+
     }
 } // end Virtual Pet
