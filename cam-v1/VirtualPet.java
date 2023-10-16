@@ -13,6 +13,7 @@ public class VirtualPet {
     private int hunger = 0;   // how hungry the pet is.
     private int tiredness = 0;
     private int mood = 10;
+    private boolean missbus = false;
     
     // constructor
     public VirtualPet() {
@@ -64,12 +65,13 @@ public class VirtualPet {
     }
 
     public void death(){
-        if (hunger >= 10){
+        if ((hunger >= 10) || (mood <= 10)){
             face.setImage("skeleton");
         }
     }
 
     public void wakeUp(){
+        mood = 10;
         int value = (int)(Math.random()*5);
         if (value != 0){
             face.setMessage("Good Morning World");
@@ -79,6 +81,7 @@ public class VirtualPet {
             face.setImage("surpirsed");
             mood = mood - 1;
         }
+        death();
     }
 
     public void breakFast(){
@@ -90,6 +93,7 @@ public class VirtualPet {
             face.setImage("bread");
             mood = mood - 1;
         }
+        death();
     }
 
     public void toSchool(){
@@ -109,23 +113,55 @@ public class VirtualPet {
                 face.setMessage("Noooooo! I missed the bus :(");
                 face.setImage("very sad");
                 mood = mood - 1;
+                missbus = true;
             }
         }
+    }
 
     public void popquiz(){
         face.setImage("popquiz");
         face.setMessage("another physics pop quiz???");
+        stop(3000);
         int quiz = (int)(Math.random()*1);
         if (quiz != 0){
-            face.setImage("ecstatic"); //popquiz pixel art
+            face.setImage("ecstatic");
             face.setMessage("I passed!");
         }
 
         else{
-            face.setImage("fail") //fail pixel art
-            // if missed bus, decrease mood
+            face.setImage("failquiz"); 
+            if (missbus = true){
+                mood = mood - 1;
+            }
+          
         }
     }
 
+    public void bully(){
+        String ans3 = response("Should I drop off my books in my locker?");
+        if (ans3.equals("Yes")){
+            face.setImage("joyful");
+            face.setMessage("Yay! I dont have to carry heavy books");
+            stop(3000);
+            face.setImage("locker");
+            stop(3000);
+            mood = mood +1;
+            int trip = (int)(Math.random()*9);
+            if (trip != 0){
+                face.setImage("trip");
+                face.setImage("Ouch");
+                stop(3000);
+                face.setImage("bully");
+                face.setMessage("Oh no....");
+                stop(3000);
+                mood = mood - 3;
+            }
+        } else {
+            face.setMessage("I want a joice box");
+            stop(3000);
+            face.setImage("juice");
+            mood = mood + 1;
+        }
     }
-} // end Virtual Pet
+}
+ // end Virtual Pet
