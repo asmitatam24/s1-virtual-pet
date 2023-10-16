@@ -8,6 +8,10 @@ public class Runner{
         p.breakFast();
         p.stop(5000);
         p.toSchool();
+        p.stop(3000);
+        p.popquiz();
+        p.stop(3000);
+        p.bully();
     }
     public static void main(String[] args){
         new Runner();
